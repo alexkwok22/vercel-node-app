@@ -1,15 +1,23 @@
 {
-	"name": "vercel-node-app",
-	"version": "1.0.0",
-	"description": "",
-	"main": "index.js",
-	"scripts": {
-		"start": "node index.js"
-	},
-	"keywords": [],
-	"author": "",
-	"license": "ISC",
-	"dependencies": {
-		"express": "^4.17.1"
-	}
+  "name": "vercel-node-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/andrewbaisden/vercel-node-app.git"
+  },
+  "bugs": {
+    "url": "https://github.com/andrewbaisden/vercel-node-app/issues"
+  },
+  "homepage": "https://github.com/andrewbaisden/vercel-node-app#readme"
 }
