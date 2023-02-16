@@ -69,7 +69,7 @@ app.get("/", (req, res) => {
 app.post("/uploadExcelFile", excelUploads.single("uploadfile"), (req, res) => {
   let myPath = path.join(
     // __dirname,
-    "tmp",
+    "/tmp",
     req.file.filename
   );
   //   importFile("./public" + "/excelUploads/" + req.file.filename);
