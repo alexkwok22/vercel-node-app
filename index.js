@@ -22,6 +22,7 @@ const csvtojson = require("csvtojson");
 const port = process.env.PORT || 3000;
 const app = express();
 const path = require("path");
+const fs = require("fs");
 
 mongoose
   .connect(
@@ -37,18 +38,32 @@ app.set("views", path.join(__dirname, "./views/"));
 app.set("view engine", "ejs");
 let target = path.join(__dirname, "public", "excelUploads");
 let excelStorage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    // cb(null, "./public/excelUploads"); // file added to the public folder of the root directory
-    cb(null, target); // file added to the public folder of the root directory
-  },
+  //   destination: (req, file, cb) => {
+  //     // cb(null, "./public/excelUploads"); // file added to the public folder of the root directory
+  //     cb(null, target); // file added to the public folder of the root directory
+  //   },
+  destination: target,
   filename: (req, file, cb) => {
     cb(null, file.originalname);
   },
 });
 let excelUploads = multer({ storage: excelStorage });
 app.get("/", (req, res) => {
+  //   const fullPath = process.cwd() + "/public"; //(not __dirname)
+  //   const dir = fs.opendirSync(fullPath);
+  //   let entity;
+  //   let listing = [];
+  //   while ((entity = dir.readSync()) !== null) {
+  //     if (entity.isFile()) {
+  //       listing.push({ type: "f", name: entity.name });
+  //     } else if (entity.isDirectory()) {
+  //       listing.push({ type: "d", name: entity.name });
+  //     }
+  //   }
+  //   dir.closeSync();
+  //   res.send(listing);
+
   res.render("index");
-  //   ejs.render("index.ejs");
 });
 // upload excel file and import in mongodb
 app.post("/uploadExcelFile", excelUploads.single("uploadfile"), (req, res) => {
