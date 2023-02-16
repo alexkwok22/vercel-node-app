@@ -93,7 +93,12 @@ app.post("/uploadExcelFile", excelUploads.single("uploadfile"), (req, res) => {
         }
         //inserting into the table student
         Student.insertMany(arrayToInsert, (err, result) => {
-          if (err) console.log("err:", err);
+          if (err) {
+            console.log("err:", err);
+
+            return res.status(400).send("upload failed", err);
+          }
+
           if (result) {
             console.log("File imported successfully.");
             res.redirect("/");
