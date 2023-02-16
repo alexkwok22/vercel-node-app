@@ -55,7 +55,15 @@ app.post("/uploadExcelFile", excelUploads.single("uploadfile"), (req, res) => {
     `"./public" + "/excelUploads/" + req.file.filename`,
     "./public" + "/excelUploads/" + req.file.filename
   );
-  importFile("./public" + "/excelUploads/" + req.file.filename);
+
+  let myPath = path.join(
+    __dirname,
+    "public",
+    "excelUploads",
+    req.file.filename
+  );
+  //   importFile("./public" + "/excelUploads/" + req.file.filename);
+  importFile(myPath);
 
   function importFile(filePath) {
     //  Read Excel File to Json Data
