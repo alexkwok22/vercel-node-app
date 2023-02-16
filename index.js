@@ -96,7 +96,7 @@ app.post("/uploadExcelFile", excelUploads.single("uploadfile"), (req, res) => {
           if (err) {
             console.log("err:", err);
 
-            return res.status(400).send("upload failed", err);
+            return res.status(400).send(err);
           }
 
           if (result) {
