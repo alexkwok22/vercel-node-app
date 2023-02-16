@@ -32,7 +32,9 @@ mongoose
   });
 
 app.use(express.static("public")); // static folder
-app.set("view engine", "ejs"); // set the template engine
+// app.set("view engine", "ejs"); // set the template engine
+app.set("views", "./views");
+app.set("view engine", "ejs");
 
 var excelStorage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -44,7 +46,7 @@ var excelStorage = multer.diskStorage({
 });
 var excelUploads = multer({ storage: excelStorage });
 app.get("/", (req, res) => {
-  res.render("index.ejs");
+  res.render("index");
 });
 // upload excel file and import in mongodb
 app.post("/uploadExcelFile", excelUploads.single("uploadfile"), (req, res) => {
