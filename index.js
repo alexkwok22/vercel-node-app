@@ -33,7 +33,7 @@ mongoose
 
 app.use(express.static("public")); // static folder
 // app.set("view engine", "ejs"); // set the template engine
-app.set("views", "./views");
+// app.set("views", "./views");
 app.set("view engine", "ejs");
 
 var excelStorage = multer.diskStorage({
