@@ -35,16 +35,17 @@ mongoose
 app.use(express.static("public")); // static folder
 app.set("views", path.join(__dirname, "./views/"));
 app.set("view engine", "ejs");
-
-var excelStorage = multer.diskStorage({
+let target = path.join(__dirname, "public", "excelUploads");
+let excelStorage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, "./public/excelUploads"); // file added to the public folder of the root directory
+    // cb(null, "./public/excelUploads"); // file added to the public folder of the root directory
+    cb(null, target); // file added to the public folder of the root directory
   },
   filename: (req, file, cb) => {
     cb(null, file.originalname);
   },
 });
-var excelUploads = multer({ storage: excelStorage });
+let excelUploads = multer({ storage: excelStorage });
 app.get("/", (req, res) => {
   res.render("index");
   //   ejs.render("index.ejs");
@@ -67,14 +68,14 @@ app.post("/uploadExcelFile", excelUploads.single("uploadfile"), (req, res) => {
 
   function importFile(filePath) {
     //  Read Excel File to Json Data
-    var arrayToInsert = [];
+    let arrayToInsert = [];
     csvtojson()
       .fromFile(filePath)
       .then((source) => {
         // Fetching the all data from each row
-        for (var i = 0; i < source.length; i++) {
+        for (let i = 0; i < source.length; i++) {
           console.log("Source", source[i]["name2"]);
-          var singleRow = {
+          let singleRow = {
             name2: source[i]["name2"],
             email: source[i]["email"],
             standard: source[i]["standard"],
