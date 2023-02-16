@@ -67,12 +67,11 @@ app.get("/", (req, res) => {
 });
 // upload excel file and import in mongodb
 app.post("/uploadExcelFile", excelUploads.single("uploadfile"), (req, res) => {
-  console.log(
-    `"./public" + "/excelUploads/" + req.file.filename`,
-    "./public" + "/excelUploads/" + req.file.filename
+  let myPath = path.join(
+    // __dirname,
+    "tmp",
+    req.file.filename
   );
-
-  let myPath = path.join(__dirname, "tmp", req.file.filename);
   //   importFile("./public" + "/excelUploads/" + req.file.filename);
   importFile(myPath);
 
