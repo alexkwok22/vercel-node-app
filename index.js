@@ -36,7 +36,7 @@ mongoose
 app.use(express.static("public")); // static folder
 app.set("views", path.join(__dirname, "./views/"));
 app.set("view engine", "ejs");
-let target = path.join(__dirname, "public", "excelUploads");
+let target = path.join(__dirname, "tmp");
 let excelStorage = multer.diskStorage({
   //   destination: (req, file, cb) => {
   //     // cb(null, "./public/excelUploads"); // file added to the public folder of the root directory
@@ -72,12 +72,7 @@ app.post("/uploadExcelFile", excelUploads.single("uploadfile"), (req, res) => {
     "./public" + "/excelUploads/" + req.file.filename
   );
 
-  let myPath = path.join(
-    __dirname,
-    "public",
-    "excelUploads",
-    req.file.filename
-  );
+  let myPath = path.join(__dirname, "tmp", req.file.filename);
   //   importFile("./public" + "/excelUploads/" + req.file.filename);
   importFile(myPath);
 
