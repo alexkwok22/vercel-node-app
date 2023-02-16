@@ -21,6 +21,7 @@ const Student = require("./studentSchema");
 const csvtojson = require("csvtojson");
 const port = process.env.PORT || 3000;
 const app = express();
+const path = require("path");
 
 mongoose
   .connect(
@@ -32,8 +33,7 @@ mongoose
   });
 
 app.use(express.static("public")); // static folder
-// app.set("view engine", "ejs"); // set the template engine
-app.set("views", "./views");
+app.set("views", path.join(__dirname, "./views/"));
 app.set("view engine", "ejs");
 
 var excelStorage = multer.diskStorage({
@@ -46,7 +46,8 @@ var excelStorage = multer.diskStorage({
 });
 var excelUploads = multer({ storage: excelStorage });
 app.get("/", (req, res) => {
-  res.render("index.ejs");
+  res.render("index");
+  //   ejs.render("index.ejs");
 });
 // upload excel file and import in mongodb
 app.post("/uploadExcelFile", excelUploads.single("uploadfile"), (req, res) => {
