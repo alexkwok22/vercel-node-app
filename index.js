@@ -36,13 +36,13 @@ mongoose
 app.use(express.static("public")); // static folder
 app.set("views", path.join(__dirname, "./views/"));
 app.set("view engine", "ejs");
-let target = path.join(__dirname, "tmp");
+// let target = path.join(__dirname, "tmp");
 let excelStorage = multer.diskStorage({
   //   destination: (req, file, cb) => {
   //     // cb(null, "./public/excelUploads"); // file added to the public folder of the root directory
   //     cb(null, target); // file added to the public folder of the root directory
   //   },
-  destination: target,
+  destination: "/tmp",
   filename: (req, file, cb) => {
     cb(null, file.originalname);
   },
